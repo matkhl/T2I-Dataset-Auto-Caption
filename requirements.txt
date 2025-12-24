@@ -1,0 +1,4 @@
+ollama
+PyYAML
+tqdm
+Pillow

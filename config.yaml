@@ -1,0 +1,33 @@
+ollama:
+  # The endpoint for your local Ollama instance
+  host: "http://localhost:11434"
+  # IMPORTANT: Ensure this model supports vision
+  model: "gemma3:12b"
+  options:
+    temperature: 0.2 # Low temperature for more factual, less creative descriptions
+
+paths:
+  input_folder: "input"
+  output_folder: "output"
+  # Extensions to look for
+  valid_extensions: [".png", ".jpg", ".jpeg", ".webp"]
+
+processing:
+  # Prepended to the final text file, separated by a comma
+  trigger_word: "factorio icon"
+  
+  # If true, sends the filename (cleaned of underscores/extensions) to the LLM as a hint
+  use_filename_context: true
+  
+  # Optional: List of prefixes to strip from filenames before sending to LLM (e.g., 'conv_')
+  filename_strip_prefixes: 
+    - "_conv_"
+
+prompts:
+  # This section defines how the LLM should behave.
+  system_instruction: >
+    You are an AI assistant tasked with captioning images for a dataset.
+    Describe the main object in the image clearly and concisely.
+    Focus on the visual description (colors, shapes, materials).
+    Do not use flowery language.
+    Do not start with "A picture of" or "An image of".
